@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="status"></p>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                userId: params.get("userId"),
+                transactionId: params.get("transactionId"),
+                code: params.get("code"),
+                adapter: params.get("adapter"),
+              mode: params.get("mode"),
+               
+            };
+        }
+
+        // Function to create the deep link
+        function createLink(userId, transactionId, code ,adapter ) {
+            const baseUrl = "selfierdv://";
+            const query = `?userId=${userId}&transactionId=${transactionId}&code=${code}&adapter=${adapter}&mode=${mode}`;
+            return baseUrl + query;
+        }
+
+        // Run when the document is ready
+        document.addEventListener("DOMContentLoaded", () => {
+            const { userId, transactionId, code ,adapter , mode } = getUrlParams();
+
+            if (userId && transactionId && code ) {
+                const appLink = createLink(userId, transactionId, code ,adapter , mode );
+
+                // Open the app link
+                window.location.href = appLink;
+                document.getElementById("status").innerText = "Opening the app...";
+            } else {
+                // Display a message if parameters are missing
+                document.getElementById("status").innerText = "Required parameters are missing.";
+            }
+        });
+    </script>
+</body>
+</html>
