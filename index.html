@@ -24,7 +24,7 @@
         }
 
         // Function to create the deep link
-        function createLink(userId, transactionId, code ,adapter ) {
+        function createLink(userId, transactionId, code ,adapter , mode ) {
             const baseUrl = "selfierdv://";
             const query = `?userId=${userId}&transactionId=${transactionId}&code=${code}&adapter=${adapter}&mode=${mode}`;
             return baseUrl + query;
